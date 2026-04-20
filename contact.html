@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Dr. Abdc Clinic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:#0b1f3a; --teal:#0d7377; --teal-lt:#14a9ad;
+      --cream:#f7f4ef; --white:#ffffff; --slate:#4a5568;
+      --border:#d6e4e5; --accent:#e8f4f4;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(11,31,58,0.96); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 70px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo .cross { width: 36px; height: 36px; background: var(--teal); border-radius: 8px; display: grid; place-items: center; font-size: 20px; color: #fff; font-weight: 700; }
+    .nav-logo .brand { color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; }
+    .nav-logo .brand span { color: var(--teal-lt); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--teal-lt); }
+    .nav-cta { background: var(--teal); color: #fff; padding: 10px 22px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--teal-lt); }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(135deg, #0b1f3a 0%, #0d3d5f 60%, #0d7377 100%);
+      padding: 140px 5% 80px; text-align: center;
+    }
+    .page-header .tag { display: inline-block; background: rgba(13,115,119,0.25); border: 1px solid rgba(13,169,173,0.4); color: var(--teal-lt); padding: 6px 18px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+    .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; color: #fff; line-height: 1.15; }
+    .page-header h1 em { color: var(--teal-lt); font-style: normal; }
+    .page-header p { color: rgba(255,255,255,0.68); margin-top: 16px; font-size: 1rem; line-height: 1.7; max-width: 520px; margin-inline: auto; }
+
+    /* SECTION */
+    section { padding: 80px 5%; }
+
+    /* CONTACT CHANNELS */
+    .channels { background: #fff; }
+    .channels-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 52px; }
+    .channel-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .channel-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--teal), var(--teal-lt)); opacity: 0; transition: opacity 0.3s; }
+    .channel-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(11,31,58,0.13); }
+    .channel-card:hover::after { opacity: 0.04; }
+    .channel-icon { font-size: 2.8rem; margin-bottom: 20px; }
+    .channel-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 10px; }
+    .channel-card p { color: var(--slate); font-size: 0.88rem; line-height: 1.65; margin-bottom: 20px; }
+    .channel-card a { color: var(--teal); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+    .channel-card a:hover { color: var(--teal-lt); }
+
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: #fff;
+      padding: 12px 26px; border-radius: 10px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: background 0.2s; box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    }
+    .wa-btn:hover { background: #1da851; }
+
+    .call-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--teal); color: #fff;
+      padding: 12px 26px; border-radius: 10px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: background 0.2s; box-shadow: 0 4px 16px rgba(13,115,119,0.35);
+    }
+    .call-btn:hover { background: var(--teal-lt); }
+
+    .mail-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--navy); color: #fff;
+      padding: 12px 26px; border-radius: 10px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: background 0.2s; box-shadow: 0 4px 16px rgba(11,31,58,0.25);
+    }
+    .mail-btn:hover { background: #1a3558; }
+
+    /* MAP */
+    .map-section { background: var(--cream); }
+    .section-tag { display: inline-block; background: var(--accent); color: var(--teal); padding: 5px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 600; color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+    .section-sub { color: var(--slate); font-size: 1rem; line-height: 1.7; max-width: 560px; }
+
+    .map-layout { display: grid; grid-template-columns: 1fr 340px; gap: 32px; margin-top: 48px; align-items: start; }
+    @media (max-width: 900px) { .map-layout { grid-template-columns: 1fr; } }
+    .map-embed { border-radius: 20px; overflow: hidden; border: 2px solid var(--border); box-shadow: 0 8px 28px rgba(11,31,58,0.08); }
+    .map-embed iframe { width: 100%; height: 480px; display: block; border: none; }
+
+    .info-panel { display: flex; flex-direction: column; gap: 16px; }
+    .info-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px 22px; }
+    .info-card .iic { font-size: 1.6rem; margin-bottom: 10px; }
+    .info-card h4 { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: 8px; }
+    .info-card p { color: var(--navy); font-size: 0.93rem; font-weight: 500; line-height: 1.6; }
+    .info-card a { color: var(--teal); text-decoration: none; }
+    .hours-row { display: flex; justify-content: space-between; font-size: 0.87rem; padding: 5px 0; border-bottom: 1px solid var(--border); }
+    .hours-row:last-child { border: none; }
+    .hours-row .day { color: var(--slate); }
+    .hours-row .time { font-weight: 600; }
+
+    /* MESSAGE FORM */
+    .message-section { background: #fff; }
+    .form-wrap {
+      max-width: 680px;
+      margin: 52px auto 0;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 52px 48px;
+    }
+    @media (max-width: 600px) { .form-wrap { padding: 32px 24px; } }
+    .form-note { color: var(--slate); font-size: 0.9rem; margin-bottom: 36px; line-height: 1.65; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { margin-bottom: 22px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      background: #fff;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(13,115,119,0.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-submit {
+      width: 100%; padding: 15px;
+      background: var(--teal); color: #fff;
+      border: none; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      cursor: pointer; transition: all 0.25s;
+      letter-spacing: 0.02em;
+    }
+    .form-submit:hover { background: var(--teal-lt); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,115,119,0.35); }
+    .form-success { display: none; text-align: center; padding: 28px; }
+    .form-success.show { display: block; }
+    .form-success .tick { font-size: 3rem; margin-bottom: 12px; }
+    .form-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--teal); margin-bottom: 8px; }
+    .form-success p { color: var(--slate); }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 48px 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    footer .footer-logo { display: flex; align-items: center; gap: 10px; }
+    footer .cross { width: 32px; height: 32px; background: var(--teal); border-radius: 6px; display: grid; place-items: center; color: #fff; font-size: 16px; font-weight: 700; }
+    footer .brand { color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+    footer .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    footer .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    footer .footer-links a:hover { color: var(--teal-lt); }
+    footer .copy { font-size: 0.8rem; width: 100%; text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    @media (max-width: 900px) { .nav-links, .nav-cta { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="cross">✚</div>
+    <span class="brand">Dr. Abdc <span>Clinic</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="tel:1234567890" class="nav-cta">Call Now</a>
+</nav>
+
+<div class="page-header">
+  <div class="tag">Contact Us</div>
+  <h1>Let's <em>Connect</em></h1>
+  <p>Whether you have a question, need guidance, or want to visit us — we're always here to help.</p>
+</div>
+
+<!-- CONTACT CHANNELS -->
+<section class="channels">
+  <div class="section-tag">Reach Us</div>
+  <h2 class="section-title">Ways to Get in Touch</h2>
+  <div class="channels-grid">
+    <!-- Phone -->
+    <div class="channel-card">
+      <div class="channel-icon">📞</div>
+      <h3>Call Us</h3>
+      <p>Our team is available during clinic hours to assist you with any queries or to schedule a visit.</p>
+      <a href="tel:1234567890" class="call-btn">📞 &nbsp;+91 1234567890</a>
+    </div>
+
+    <!-- Email -->
+    <div class="channel-card">
+      <div class="channel-icon">✉️</div>
+      <h3>Email Us</h3>
+      <p>Drop us an email and we'll respond within one business day. Perfect for detailed queries.</p>
+      <a href="mailto:dycrexwebsites@gmail.com" class="mail-btn">✉️ &nbsp;Send Email</a>
+      <p style="margin-top:12px; font-size:0.82rem; color:var(--slate);">dycrexwebsites@gmail.com</p>
+    </div>
+
+    <!-- WhatsApp -->
+    <div class="channel-card">
+      <div class="channel-icon">💬</div>
+      <h3>WhatsApp</h3>
+      <p>Prefer messaging? Chat with us instantly on WhatsApp for quick answers and assistance.</p>
+      <a href="https://wa.me/1234567890?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20clinic%20services." target="_blank" class="wa-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.128.557 4.126 1.528 5.856L.057 23.998l6.304-1.654A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.87 9.87 0 01-5.031-1.38l-.361-.214-3.741.981.999-3.648-.235-.374A9.86 9.86 0 012.1 12c0-5.461 4.439-9.9 9.9-9.9 5.462 0 9.9 4.439 9.9 9.9 0 5.462-4.438 9.9-9.9 9.9z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <!-- Visit -->
+    <div class="channel-card">
+      <div class="channel-icon">📍</div>
+      <h3>Visit the Clinic</h3>
+      <p>Walk-ins are welcome. Come see us at our conveniently located clinic. Parking is available nearby.</p>
+      <p style="font-weight:600; font-size:0.95rem; color:var(--navy);">XYZ Apartment, Flat No. 0</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="section-tag">Find Us</div>
+  <h2 class="section-title">Our Location</h2>
+  <p class="section-sub">We're located at XYZ Apartment, Flat No. 0. Use the map below to get directions.</p>
+  <div class="map-layout">
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2!2d-73.9857!3d40.7484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sXYZ+Apartment%2C+Flat+No.+0!5e0!3m2!1sen!2sin!4v1"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Clinic Location">
+      </iframe>
+    </div>
+    <div class="info-panel">
+      <div class="info-card">
+        <div class="iic">📍</div>
+        <h4>Address</h4>
+        <p>XYZ Apartment<br/>Flat No. 0</p>
+      </div>
+      <div class="info-card">
+        <div class="iic">📞</div>
+        <h4>Phone</h4>
+        <p><a href="tel:1234567890">+91 1234567890</a></p>
+      </div>
+      <div class="info-card">
+        <div class="iic">🕐</div>
+        <h4>Clinic Hours</h4>
+        <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">9 AM – 7 PM</span></div>
+        <div class="hours-row"><span class="day">Saturday</span><span class="time">9 AM – 5 PM</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span class="time">10 AM – 2 PM</span></div>
+      </div>
+      <div class="info-card">
+        <div class="iic">✉️</div>
+        <h4>Email</h4>
+        <p><a href="mailto:dycrexwebsites@gmail.com">dycrexwebsites@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGE FORM -->
+<section class="message-section">
+  <div class="section-tag">Send a Message</div>
+  <h2 class="section-title">Write to Us</h2>
+  <p class="section-sub">Have a specific question? Fill out the form and we'll get back to you shortly.</p>
+  <div class="form-wrap">
+    <p class="form-note">All fields marked with * are required. We typically respond within 24 hours on working days.</p>
+    <div id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="fname" placeholder="Your full name" required/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="femail" placeholder="you@example.com" required/>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select id="fsubject">
+          <option value="">Select a topic</option>
+          <option>General Enquiry</option>
+          <option>Dental Consultation</option>
+          <option>Physiotherapy Query</option>
+          <option>Feedback</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message *</label>
+        <textarea id="fmessage" placeholder="Tell us how we can help you…" required></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Send Message →</button>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <div class="tick">✅</div>
+      <h3>Message Sent!</h3>
+      <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <div class="cross">✚</div>
+    <span class="brand">Dr. Abdc Clinic</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="tel:1234567890">+91 1234567890</a>
+  </div>
+  <div class="copy">© 2026 Dr. Abdc Clinic. All rights reserved.</div>
+</footer>
+
+<script>
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const msg = document.getElementById('fmessage').value.trim();
+    if (!name || !phone || !email || !msg) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+    // Real integration: send to backend or email service here
+  }
+</script>
+
+</body>
+</html>
