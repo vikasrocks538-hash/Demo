@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Dr. Abdc Clinic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:#0b1f3a; --teal:#0d7377; --teal-lt:#14a9ad;
+      --cream:#f7f4ef; --white:#ffffff; --slate:#4a5568;
+      --border:#d6e4e5; --accent:#e8f4f4;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(11,31,58,0.96); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 70px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo .cross { width: 36px; height: 36px; background: var(--teal); border-radius: 8px; display: grid; place-items: center; font-size: 20px; color: #fff; font-weight: 700; }
+    .nav-logo .brand { color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; }
+    .nav-logo .brand span { color: var(--teal-lt); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--teal-lt); }
+    .nav-cta { background: var(--teal); color: #fff; padding: 10px 22px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--teal-lt); }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(135deg, #0b1f3a 0%, #0d3d5f 60%, #0d7377 100%);
+      padding: 140px 5% 80px;
+      text-align: center;
+    }
+    .page-header .tag { display: inline-block; background: rgba(13,115,119,0.25); border: 1px solid rgba(13,169,173,0.4); color: var(--teal-lt); padding: 6px 18px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+    .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; color: #fff; line-height: 1.15; }
+    .page-header h1 em { color: var(--teal-lt); font-style: normal; }
+    .page-header p { color: rgba(255,255,255,0.68); margin-top: 16px; font-size: 1rem; line-height: 1.7; max-width: 520px; margin-inline: auto; }
+
+    /* SECTION BASE */
+    section { padding: 80px 5%; }
+    .section-tag { display: inline-block; background: var(--accent); color: var(--teal); padding: 5px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 600; color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+
+    /* DR PROFILE */
+    .dr-profile { background: #fff; }
+    .profile-grid { display: grid; grid-template-columns: 340px 1fr; gap: 64px; align-items: start; margin-top: 52px; }
+    @media (max-width: 900px) { .profile-grid { grid-template-columns: 1fr; } }
+
+    .profile-photo-wrap {
+      position: sticky; top: 90px;
+    }
+    .profile-photo {
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, #d4e8e8, #b8d4d4);
+      border-radius: 24px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 14px;
+      border: 2px solid var(--border);
+      font-size: 6rem;
+    }
+    .profile-photo span { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--teal); font-weight: 500; }
+    .reg-badge {
+      margin-top: 16px;
+      background: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .reg-badge h4 { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: 6px; }
+    .reg-badge p { font-size: 0.92rem; font-weight: 600; color: var(--navy); }
+    .reg-badge small { font-size: 0.78rem; color: var(--slate); }
+
+    .profile-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .profile-degs { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 28px; }
+    .deg-tag { background: var(--accent); color: var(--teal); padding: 5px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; border: 1px solid var(--border); }
+    .profile-content p { color: var(--slate); font-size: 0.97rem; line-height: 1.78; margin-bottom: 20px; }
+
+    /* TIMELINE */
+    .timeline { margin-top: 40px; }
+    .timeline h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 28px; }
+    .tl-item { display: flex; gap: 20px; margin-bottom: 28px; }
+    .tl-dot { width: 12px; height: 12px; background: var(--teal); border-radius: 50%; flex-shrink: 0; margin-top: 6px; position: relative; }
+    .tl-dot::after { content: ''; position: absolute; top: 12px; left: 5px; width: 2px; height: calc(100% + 16px); background: var(--border); }
+    .tl-item:last-child .tl-dot::after { display: none; }
+    .tl-year { font-size: 0.78rem; font-weight: 600; color: var(--teal); letter-spacing: 0.06em; margin-bottom: 4px; }
+    .tl-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+    .tl-sub { font-size: 0.85rem; color: var(--slate); }
+
+    /* EXPERTISE */
+    .expertise { background: var(--cream); }
+    .exp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 48px; }
+    .exp-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px 22px; text-align: center; transition: all 0.25s; }
+    .exp-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(11,31,58,0.09); }
+    .exp-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .exp-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+    .exp-card p { font-size: 0.82rem; color: var(--slate); line-height: 1.55; }
+
+    /* GALLERY */
+    .about-gallery { background: #fff; }
+    .ag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 48px; }
+    .ag-item { aspect-ratio: 1/1; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg,#d4e8e8,#b8d4d4); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border: 1px solid var(--border); color: var(--teal); font-size: 2.5rem; }
+    .ag-item span { font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 48px 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    footer .footer-logo { display: flex; align-items: center; gap: 10px; }
+    footer .cross { width: 32px; height: 32px; background: var(--teal); border-radius: 6px; display: grid; place-items: center; color: #fff; font-size: 16px; font-weight: 700; }
+    footer .brand { color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+    footer .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    footer .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    footer .footer-links a:hover { color: var(--teal-lt); }
+    footer .copy { font-size: 0.8rem; width: 100%; text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    @media (max-width: 900px) { .nav-links, .nav-cta { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="cross">✚</div>
+    <span class="brand">Dr. Abdc <span>Clinic</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Contact Us</a>
+</nav>
+
+<div class="page-header">
+  <div class="tag">About the Doctor</div>
+  <h1>Meet <em>Dr. Abdc</em></h1>
+  <p>A dedicated clinician with over a decade of expertise in dental and physiotherapy care, committed to excellence in every consultation.</p>
+</div>
+
+<!-- PROFILE -->
+<section class="dr-profile">
+  <div class="profile-grid">
+    <!-- LEFT: Photo & Registration -->
+    <div class="profile-photo-wrap">
+      <div class="profile-photo">👨‍⚕️<span>Dr. Abdc</span></div>
+      <div class="reg-badge">
+        <h4>Registration</h4>
+        <p>MCI Reg. No. MCI-2024-XXXX</p>
+        <small>Dental Council of India · Physiotherapy Council</small>
+      </div>
+    </div>
+
+    <!-- RIGHT: Info -->
+    <div class="profile-content">
+      <h2>Dr. Abdc</h2>
+      <div class="profile-degs">
+        <span class="deg-tag">BDS</span>
+        <span class="deg-tag">MDS – Prosthodontics</span>
+        <span class="deg-tag">BPTH</span>
+        <span class="deg-tag">MPT – Orthopaedics</span>
+        <span class="deg-tag">PGDCC</span>
+      </div>
+      <p>Dr. Abdc is a highly qualified clinician holding dual specialisations in Prosthodontics (Dental) and Orthopaedic Physiotherapy. With more than 10 years of clinical experience, the doctor has helped thousands of patients regain their health, confidence, and quality of life.</p>
+      <p>Known for combining the latest clinical evidence with a compassionate, patient-first approach, Dr. Abdc ensures that every individual who walks through the door receives personalised attention and the highest standard of care.</p>
+      <p>The clinic is equipped with modern diagnostic tools and treatment facilities to address a wide spectrum of dental and musculoskeletal concerns — all under one roof.</p>
+
+      <div class="timeline">
+        <h3>Education & Experience</h3>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2014</div>
+            <div class="tl-title">BDS – Bachelor of Dental Surgery</div>
+            <div class="tl-sub">Premier Dental College, University of Health Sciences</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2016</div>
+            <div class="tl-title">BPTH – Bachelor of Physiotherapy</div>
+            <div class="tl-sub">College of Physiotherapy, State Medical University</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2018</div>
+            <div class="tl-title">MDS – Prosthodontics &amp; Crown Bridge</div>
+            <div class="tl-sub">Postgraduate Dental Institute</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2020</div>
+            <div class="tl-title">MPT – Musculoskeletal &amp; Sports Physiotherapy</div>
+            <div class="tl-sub">Advanced Institute of Physiotherapy</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2021 – Present</div>
+            <div class="tl-title">Founder & Chief Clinician — Dr. Abdc Clinic</div>
+            <div class="tl-sub">XYZ Apartment, Flat No. 0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise">
+  <div class="section-tag">Areas of Expertise</div>
+  <h2 class="section-title">Specialisations &amp; Skills</h2>
+  <div class="exp-grid">
+    <div class="exp-card"><div class="exp-icon">🦷</div><h4>Dental Prosthetics</h4><p>Crowns, bridges, dentures, and implant prosthetics.</p></div>
+    <div class="exp-card"><div class="exp-icon">😁</div><h4>Cosmetic Dentistry</h4><p>Veneers, teeth whitening, and smile makeovers.</p></div>
+    <div class="exp-card"><div class="exp-icon">🏃</div><h4>Sports Rehab</h4><p>Injury management and return-to-sport programmes.</p></div>
+    <div class="exp-card"><div class="exp-icon">🦴</div><h4>Orthopaedic PT</h4><p>Spine, joint, and post-surgical rehabilitation.</p></div>
+    <div class="exp-card"><div class="exp-icon">💊</div><h4>Pain Management</h4><p>Chronic pain relief using modern therapeutic methods.</p></div>
+    <div class="exp-card"><div class="exp-icon">👶</div><h4>Paediatric Care</h4><p>Gentle dental and physio care for children.</p></div>
+  </div>
+</section>
+
+<!-- CLINIC GALLERY -->
+<section class="about-gallery">
+  <div class="section-tag">Our Facilities</div>
+  <h2 class="section-title">Inside the Clinic</h2>
+  <div class="ag-grid">
+    <div class="ag-item">🏥<span>Photo 1</span></div>
+    <div class="ag-item">🛋️<span>Photo 2</span></div>
+    <div class="ag-item">🔬<span>Photo 3</span></div>
+    <div class="ag-item">🪑<span>Photo 4</span></div>
+    <div class="ag-item">💉<span>Photo 5</span></div>
+    <div class="ag-item">🩻<span>Photo 6</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <div class="cross">✚</div>
+    <span class="brand">Dr. Abdc Clinic</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="tel:1234567890">+91 1234567890</a>
+  </div>
+  <div class="copy">© 2026 Dr. Abdc Clinic. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
