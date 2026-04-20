@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Abdc Clinic — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:    #0b1f3a;
+      --teal:    #0d7377;
+      --teal-lt: #14a9ad;
+      --cream:   #f7f4ef;
+      --white:   #ffffff;
+      --slate:   #4a5568;
+      --border:  #d6e4e5;
+      --accent:  #e8f4f4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(11,31,58,0.96);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .nav-logo .cross {
+      width: 36px; height: 36px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: grid; place-items: center;
+      font-size: 20px; color: #fff; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .nav-logo .brand { color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.02em; }
+    .nav-logo .brand span { color: var(--teal-lt); }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--teal-lt); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0b1f3a 0%, #0d3d5f 55%, #0d7377 100%);
+      display: flex; align-items: center;
+      padding: 100px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230d7377' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner { max-width: 680px; position: relative; animation: fadeUp 0.9s ease both; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(13,115,119,0.25);
+      border: 1px solid rgba(13,115,119,0.5);
+      color: var(--teal-lt);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-badge::before { content: '✦'; }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 24px;
+    }
+    .hero h1 em { color: var(--teal-lt); font-style: normal; }
+    .hero p {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.08rem;
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--teal);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(13,115,119,0.4);
+    }
+    .btn-primary:hover { background: var(--teal-lt); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--teal-lt); color: var(--teal-lt); }
+
+    .hero-stats {
+      display: flex; gap: 48px; margin-top: 60px;
+    }
+    .stat-item .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--teal-lt);
+      line-height: 1;
+    }
+    .stat-item .label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 90px 5%; }
+    .section-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--teal);
+      padding: 5px 16px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--slate);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: #fff; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      margin-top: 52px;
+    }
+    .service-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-lt));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(11,31,58,0.1); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .svc-icon {
+      width: 52px; height: 52px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      color: var(--slate);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    /* ── GALLERY ── */
+    .gallery { background: var(--cream); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 52px;
+    }
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      background: #dce8e8;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+    }
+    .gallery-item .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #d4e8e8, #b8d8d8);
+      color: var(--teal);
+      font-size: 2.5rem;
+      gap: 12px;
+    }
+    .gallery-item .photo-placeholder span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── DR CARD (homepage preview) ── */
+    .doctor-preview {
+      background: linear-gradient(135deg, var(--navy), #0d3d5f);
+      border-radius: 24px;
+      padding: 60px;
+      display: flex;
+      gap: 52px;
+      align-items: center;
+      margin-top: 52px;
+      flex-wrap: wrap;
+    }
+    .dr-photo {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--teal-lt));
+      flex-shrink: 0;
+      display: grid; place-items: center;
+      font-size: 5rem;
+      border: 4px solid rgba(255,255,255,0.15);
+    }
+    .dr-info h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .dr-deg {
+      color: var(--teal-lt);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+    .dr-info p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.96rem;
+      line-height: 1.72;
+      max-width: 500px;
+      margin-bottom: 28px;
+    }
+
+    /* ── MAP ── */
+    .map-section { background: #fff; }
+    .map-wrap {
+      margin-top: 48px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      box-shadow: 0 8px 32px rgba(11,31,58,0.08);
+    }
+    .map-wrap iframe {
+      width: 100%; height: 460px; display: block; border: none;
+    }
+    .map-info {
+      display: flex; gap: 40px; flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .map-info-card {
+      flex: 1; min-width: 200px;
+      background: var(--accent);
+      border-radius: 14px;
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+    }
+    .map-info-card .mic { font-size: 1.5rem; margin-bottom: 10px; }
+    .map-info-card h4 {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .map-info-card p { color: var(--navy); font-size: 0.95rem; font-weight: 500; line-height: 1.5; }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--cream); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 52px;
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    .contact-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px;
+      display: flex; align-items: flex-start; gap: 20px;
+      transition: box-shadow 0.2s;
+    }
+    .contact-card:hover { box-shadow: 0 8px 28px rgba(11,31,58,0.09); }
+    .contact-icon {
+      width: 52px; height: 52px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .contact-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    .contact-card p { color: var(--slate); font-size: 0.9rem; line-height: 1.6; }
+    .contact-card a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .contact-card a:hover { color: var(--teal-lt); }
+
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366;
+      color: #fff;
+      padding: 11px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 14px;
+      transition: background 0.2s;
+    }
+    .wa-btn:hover { background: #1da851; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      padding: 48px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+    footer .footer-logo { display: flex; align-items: center; gap: 10px; }
+    footer .footer-logo .cross {
+      width: 32px; height: 32px; background: var(--teal);
+      border-radius: 6px; display: grid; place-items: center;
+      color: #fff; font-size: 16px; font-weight: 700;
+    }
+    footer .brand { color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+    footer .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    footer .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    footer .footer-links a:hover { color: var(--teal-lt); }
+    footer .copy { font-size: 0.8rem; width: 100%; text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hero-stats { gap: 28px; }
+      .doctor-preview { padding: 40px 28px; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="cross">✚</div>
+    <span class="brand">Dr. Abdc <span>Clinic</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Contact Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Trusted Medical Care</div>
+    <h1>Your Health, <em>Our Priority</em></h1>
+    <p>Experience world-class clinical care with a personal touch. Dr. Abdc's practice is committed to delivering compassionate, evidence-based treatment for every patient.</p>
+    <div class="hero-btns">
+      <a href="about.html" class="btn-primary">Meet Dr. Abdc</a>
+      <a href="contact.html" class="btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="num">10+</div><div class="label">Years Experience</div></div>
+      <div class="stat-item"><div class="num">5000+</div><div class="label">Patients Treated</div></div>
+      <div class="stat-item"><div class="num">100%</div><div class="label">Dedication</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="section-tag">Our Services</div>
+  <h2 class="section-title">Comprehensive Dental &amp; Physiotherapy Care</h2>
+  <p class="section-sub">We offer a wide range of medical services under one roof, ensuring you and your family receive the best care available.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-icon">🦷</div>
+      <h3>Dental Consultation</h3>
+      <p>Complete oral health examinations, diagnosis, and personalised treatment plans for patients of all ages.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🏃</div>
+      <h3>Physiotherapy</h3>
+      <p>Evidence-based rehabilitation and physical therapy for musculoskeletal conditions, sports injuries, and post-surgical recovery.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🩺</div>
+      <h3>General Check-up</h3>
+      <p>Routine health screenings and preventive care to keep you at your best throughout every stage of life.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">💊</div>
+      <h3>Pain Management</h3>
+      <p>Targeted pain-relief therapies combining modern techniques with holistic approaches for lasting relief.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="section-tag">Gallery</div>
+  <h2 class="section-title">Our Clinic Spaces</h2>
+  <p class="section-sub">State-of-the-art facilities designed for your comfort and care.</p>
+  <div class="gallery-grid">
+    <div class="gallery-item"><div class="photo-placeholder">🏥<span>Photo 1</span></div></div>
+    <div class="gallery-item"><div class="photo-placeholder">🛋️<span>Photo 2</span></div></div>
+    <div class="gallery-item"><div class="photo-placeholder">🔬<span>Photo 3</span></div></div>
+    <div class="gallery-item"><div class="photo-placeholder">💉<span>Photo 4</span></div></div>
+  </div>
+</section>
+
+<!-- DOCTOR PREVIEW -->
+<section style="background:#fff; padding:90px 5%;">
+  <div class="section-tag">Meet the Doctor</div>
+  <h2 class="section-title">Expert Care You Can Trust</h2>
+  <div class="doctor-preview">
+    <div class="dr-photo">👨‍⚕️</div>
+    <div class="dr-info">
+      <h2>Dr. Abdc</h2>
+      <div class="dr-deg">BDS, MDS (Prosthodontics) · BPTH, MPT (Orthopaedics) · Reg. No. MCI-2024-XXXX</div>
+      <p>Dr. Abdc brings over a decade of clinical excellence in dental and physiotherapy care. Trained from a premier institution, the doctor is devoted to improving patients' quality of life through precise diagnosis and personalised treatment.</p>
+      <a href="about.html" class="btn-primary" style="display:inline-block;">Full Profile →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="section-tag">Location</div>
+  <h2 class="section-title">Find Us Here</h2>
+  <p class="section-sub">Conveniently located at XYZ Apartment, Flat No. 0. Walk-ins are welcome during clinic hours.</p>
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2!2d-73.9857!3d40.7484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sXYZ+Apartment%2C+Flat+No.+0!5e0!3m2!1sen!2sin!4v1"
+      allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Clinic Location">
+    </iframe>
+  </div>
+  <div class="map-info">
+    <div class="map-info-card">
+      <div class="mic">📍</div>
+      <h4>Address</h4>
+      <p>XYZ Apartment, Flat No. 0</p>
+    </div>
+    <div class="map-info-card">
+      <div class="mic">📞</div>
+      <h4>Phone</h4>
+      <p><a href="tel:1234567890" style="color:var(--teal);text-decoration:none;">+91 1234567890</a></p>
+    </div>
+    <div class="map-info-card">
+      <div class="mic">🕐</div>
+      <h4>Clinic Hours</h4>
+      <p>Mon – Sat: 9:00 AM – 7:00 PM<br/>Sun: 10:00 AM – 2:00 PM</p>
+    </div>
+    <div class="map-info-card">
+      <div class="mic">✉️</div>
+      <h4>Email</h4>
+      <p><a href="mailto:dycrexwebsites@gmail.com" style="color:var(--teal);text-decoration:none;">dycrexwebsites@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<section class="contact-section">
+  <div class="section-tag">Contact Us</div>
+  <h2 class="section-title">We're Here For You</h2>
+  <p class="section-sub">Reach out anytime — we're just a call, message, or click away.</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div>
+        <h3>Call Us</h3>
+        <p>Speak directly with our team.</p>
+        <a href="tel:1234567890">+91 1234567890</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <h3>Email Us</h3>
+        <p>Drop us a message anytime.</p>
+        <a href="mailto:dycrexwebsites@gmail.com">dycrexwebsites@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">💬</div>
+      <div>
+        <h3>WhatsApp</h3>
+        <p>Chat with us instantly on WhatsApp.</p>
+        <a href="https://wa.me/1234567890" target="_blank" class="wa-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.128.557 4.126 1.528 5.856L.057 23.998l6.304-1.654A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.87 9.87 0 01-5.031-1.38l-.361-.214-3.741.981.999-3.648-.235-.374A9.86 9.86 0 012.1 12c0-5.461 4.439-9.9 9.9-9.9 5.462 0 9.9 4.439 9.9 9.9 0 5.462-4.438 9.9-9.9 9.9z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <div>
+        <h3>Visit Us</h3>
+        <p>XYZ Apartment, Flat No. 0<br/>Mon–Sat: 9 AM – 7 PM</p>
+        <a href="contact.html">Get Directions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="cross">✚</div>
+    <span class="brand">Dr. Abdc Clinic</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="tel:1234567890">+91 1234567890</a>
+  </div>
+  <div class="copy">© 2026 Dr. Abdc Clinic. All rights reserved. | Designed with care.</div>
+</footer>
+
+</body>
+</html>
